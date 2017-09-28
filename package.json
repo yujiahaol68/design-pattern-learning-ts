@@ -1,0 +1,28 @@
+{
+  "name": "design-pattern-learning-ts",
+  "version": "1.0.0",
+  "description": "Java like design pattern implements BY TypeScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node build/main.js",
+    "strategy": "tsc strategy/*.ts --lib ES7 --outDir ./build --types node"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yujiahaol68/design-pattern-learning-ts.git"
+  },
+  "keywords": [
+    "design"
+  ],
+  "author": "Tecker.Yu <tecker_yuknigh@163.com> (https://github.com/yujiahaol68)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yujiahaol68/design-pattern-learning-ts/issues"
+  },
+  "homepage": "https://github.com/yujiahaol68/design-pattern-learning-ts#readme",
+  "dependencies": {
+    "@types/node": "8.0.31",
+    "typescript": "2.5.3"
+  }
+}
