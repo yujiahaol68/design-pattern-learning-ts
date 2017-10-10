@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node build/main.js",
     "strategy": "tsc strategy/*.ts --lib ES7 --outDir ./build --types node",
-    "observer": "tsc observer/*.ts --lib ES7 --outDir ./build --types node"
+    "observer": "tsc observer/*.ts --lib ES7 --outDir ./build --types node",
+    "decorator": "tsc decorator/*.ts --lib ES7 --outDir ./build --types node"
   },
   "repository": {
     "type": "git",
