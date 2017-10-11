@@ -82,35 +82,60 @@ class Checker extends CondimentDecorator {
     return this.prettyDescription();
   }
 
-  // TODO: pretty print
-  // https://stackoverflow.com/questions/9229645/remove-duplicates-from-javascript-array
   protected prettyDescription() {
-    return this.burger.getDescription();
+    let count = 0;
+    let prettyFormat = [];
+    const unique = Array.from(new Set(this.ingredients));
+    unique.forEach(item => {
+      this.ingredients.forEach(ingredient => {
+        if (item === ingredient) count++;
+      })
+      switch (count) {
+        case 1: prettyFormat.push(item);
+          break;
+        case 2: prettyFormat.push('Double ' + item);
+          break;
+        case 3: prettyFormat.push('Triple ' + item);
+          break;
+      }
+      if (count > 3) prettyFormat.push(`${count} ${item}`);
+      count = 0;
+    });
+    return prettyFormat.join(', ');
   }
 
   public cost() {
-    return 'Total:  $ ' + this.burger.cost();
+    return 'Total:  $ ' + this.burger.cost().toFixed(2);
   }
 }
 
 
 let hamBurger = new HamBurger();
-let turkeyBurger = new TurkeyBurger();
 console.log('Before decorate:');
 console.log(hamBurger.getDescription());
 console.log('It costs ' + hamBurger.cost());
-console.log('Add Bacon:');
+console.log('Add 2 Bacons:');
+hamBurger = new Bacon(hamBurger);
 hamBurger = new Bacon(hamBurger);
 console.log(hamBurger.getDescription());
 console.log('It costs ' + hamBurger.cost());
+const checkOut = new Checker(hamBurger);
+console.log(checkOut.getDescription());
+console.log(checkOut.cost());
 
 console.log('=====');
 
+let turkeyBurger = new TurkeyBurger();
 console.log('Before decorate:');
 console.log(turkeyBurger.getDescription());
 console.log('It costs ' + turkeyBurger.cost());
 console.log('Add Onion Ring:');
 turkeyBurger = new OnionRing(turkeyBurger);
+turkeyBurger = new OnionRing(turkeyBurger);
+turkeyBurger = new OnionRing(turkeyBurger);
 console.log(turkeyBurger.getDescription());
 console.log('It costs ' + turkeyBurger.cost());
 
+const check2Out = new Checker(turkeyBurger);
+console.log(check2Out.getDescription());
+console.log(check2Out.cost());
