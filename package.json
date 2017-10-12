@@ -10,7 +10,8 @@
     "observer": "tsc observer/*.ts --lib ES7 --outDir ./build --types node",
     "decorator": "tsc decorator/*.ts --lib ES7 --outDir ./build --types node",
     "factory": "tsc factory/*.ts --lib ES7 --outDir ./build --types node",
-    "singleton": "tsc singleton/*.ts --lib ES7 --outDir ./build --types node"
+    "singleton": "tsc singleton/*.ts --lib ES7 --outDir ./build --types node",
+    "command": "tsc command/*.ts --lib ES7 --outDir ./build --types node"
   },
   "repository": {
     "type": "git",
