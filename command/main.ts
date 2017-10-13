@@ -13,18 +13,36 @@ class Scheduler {
   }
 
   public addTask(newTask:Task) {
-    if(this.nextTaskTime) {
-      this.nextTaskTime = this.nextTaskTime > newTask.getDate() ? newTask.getDate() : this.nextTaskTime;
-    } else {
+    this.taskQueue.push(newTask);
+
+    if(!this.nextTaskTime) {
       this.nextTaskTime = newTask.getDate();
+      return;
     }
 
-    this.taskQueue.push(newTask);
+    this.nextTaskTime = this.nextTaskTime > newTask.getDate() ? newTask.getDate() : this.nextTaskTime;
+    this.taskQueue = this.taskQueue.sort(this.compareDate);
+  }
+
+  public getNearestDate() {
+    return this.nextTaskTime;
   }
 
   public doTask() {
+    if (this.taskQueue.length === 0) {
+      console.log('--> Task queue is now Empty');
+      return;
+    }
+
     const taskReady = this.taskQueue.shift();
     taskReady.execute();
+
+    console.log('--> Task done !');
+    console.log('======');
+  }
+
+  private compareDate(a:Task, b:Task) {
+    return a.getDate() > b.getDate() ? 1 : -1;
   }
 }
 
@@ -100,11 +118,18 @@ const scheduler = new Scheduler();
 const task1 = new GotoSchool(new Bus(), time1);
 const task2 = new StarkInterShip(new SpiderSuit(), time2);
 
-scheduler.addTask(task1);
 scheduler.addTask(task2);
+scheduler.addTask(task1);
 
 function checkScheduler() {
+  console.log('--------------');
+  console.log('Checking SpiderMan scheduler ...');
 
+  let latestDate = new Date();
+  if (scheduler.getNearestDate() <= latestDate) {
+    scheduler.doTask();
+  }
+  latestDate = null;
 }
 
 
