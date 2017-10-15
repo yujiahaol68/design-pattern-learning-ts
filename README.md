@@ -20,7 +20,7 @@ Most of examples are created by myself and some have production significance.
 ```
 $ npm install
 $ npm run PatternNameAbove
-$ npm run ./build/main.js
+$ node ./build/main.js
 ```
 
 *NOTE:* Under most circumstances it is `main.js`. You can specify other js file to run if no `main.js` in `build` dir.
